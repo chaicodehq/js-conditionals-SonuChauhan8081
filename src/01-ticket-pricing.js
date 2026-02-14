@@ -23,5 +23,29 @@
  * @returns {number} The ticket price, or -1 for invalid input
  */
 export function getTicketPrice(age, isWeekend) {
-  // Your code here
+  function isValidAge(age) {
+  if (age === null || age === undefined) return false;
+
+  const num_age = Number(age);
+
+  if (Number.isNaN(num_age)) return false;
+  if (num_age < 0) return false;
+  if (!Number.isInteger(num_age)) return false;
+
+  return true;
+  }
+
+  if(isValidAge(age)){
+    if(age <= 12){
+      return isWeekend ? 11:8;
+    } else if(age <= 17){
+      return isWeekend ? 15:12;
+    } else if(age <= 59){
+      return isWeekend ? 18:15;
+    } else{
+      return isWeekend ? 13:10;
+    }
+  } else{
+    return -1;
+  }
 }
